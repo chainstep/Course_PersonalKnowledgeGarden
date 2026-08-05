@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "curator": {
+      "description": "Primary knowledge garden curator",
+      "permission": {"edit": "deny", "bash": "deny", "webfetch": "deny", "tool": {"knowledge_add": "allow"}, "mcp": {"knowledge-garden": "allow"}},
+      "external_directory": ["~/.local/share/knowledge-garden/**"]
+    },
+    "quiz-master": {
+      "description": "Read-only knowledge quiz subagent",
+      "mode": "subagent",
+      "permission": {"edit": "deny", "bash": "deny", "webfetch": "deny", "mcp": {"knowledge-garden.search": "allow", "knowledge-garden.fetch": "allow"}}
+    }
+  },
+  "mcp": {
+    "knowledge-garden": {
+      "type": "remote",
+      "url": "http://127.0.0.1:8765/mcp",
+      "enabled": false
+    }
+  }
+}
